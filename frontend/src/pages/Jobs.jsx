@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const API = import.meta.env.VITE_API || "http://localhost:4000";
+const API = import.meta.env.VITE_API; // now uses the live backend
 
 export default function Jobs() {
   const [title, setTitle] = useState("");

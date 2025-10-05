@@ -6,7 +6,8 @@ export default function Search() {
   const [q, setQ] = useState("");
   const [results, setResults] = useState([]);
   const [askResults, setAskResults] = useState([]);
-  const API = import.meta.env.VITE_API || "http://localhost:4000";
+  const API = import.meta.env.VITE_API; // now uses the live backend
+
 
   // Search resumes
   const runSearch = async () => {

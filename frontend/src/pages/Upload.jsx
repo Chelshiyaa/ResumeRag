@@ -4,8 +4,7 @@ import axios from "axios";
 export default function Upload() {
   const [files, setFiles] = useState([]);
   const [message, setMessage] = useState("");
-  const API = import.meta.env.VITE_API || "http://localhost:4000";
-
+  const API = import.meta.env.VITE_API; // now uses the live backend
   const handleFiles = (e) => {
     setFiles([...e.target.files]);
   };

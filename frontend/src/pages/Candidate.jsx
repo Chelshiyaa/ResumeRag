@@ -9,7 +9,7 @@ export default function Candidate() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const API = import.meta.env.VITE_API || "http://localhost:4000";
+  const API = import.meta.env.VITE_API; // now uses the live backend
 
   useEffect(() => {
     const fetchResume = async () => {

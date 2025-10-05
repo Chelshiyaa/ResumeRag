@@ -12,22 +12,24 @@ const app = express();
 
 // ---------- CORS CONFIG ----------
 const allowedOrigins = [
-  'http://localhost:5173', // local dev frontend
-  'https://resume-rag-amber.vercel.app' // deployed frontend
+  'http://localhost:5173',
+  'https://resume-rag-amber.vercel.app'
 ];
 
 app.use(cors({
   origin: function(origin, callback){
-    // allow requests with no origin (like Postman)
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+    if(!origin) return callback(null, true); // allow Postman or curl
+    const normalizedOrigin = origin.replace(/\/$/, ''); // remove trailing slash
+    if(allowedOrigins.includes(normalizedOrigin)){
+      return callback(null, true);
+    } else {
+      console.log('Blocked CORS request from:', origin);
+      return callback(new Error('CORS not allowed'), false);
     }
-    return callback(null, true);
   },
   credentials: true
 }));
+
 
 // ---------- MIDDLEWARE ----------
 app.use(morgan('dev'));
